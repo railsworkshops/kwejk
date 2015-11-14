@@ -3,9 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :picture
-    = f.association :user
-    = f.association :category
+    = f.input :picture, as: :file
 
   .form-actions
     = f.button :submit
