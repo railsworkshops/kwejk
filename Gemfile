@@ -18,6 +18,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'upmin-admin'
+gem 'carrierwave', '~> 0.10.0'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
