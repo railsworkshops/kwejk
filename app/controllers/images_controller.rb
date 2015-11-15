@@ -12,6 +12,10 @@ class ImagesController < ApplicationController
   def show
   end
 
+  def random_image
+    @image = Image.order('RANDOM()').first
+  end
+
   # GET /images/new
   def new
     @image = Image.new
@@ -61,6 +65,14 @@ class ImagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def add_to_top
+    if current_user.admin? || current_user.vip?
+      set_image
+      @image.update_attributes(category: Category.find_by_default(false))
+      redirect_to top_path
     end
   end
 

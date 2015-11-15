@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :get_images, only: :show
 
   # GET /categories
   # GET /categories.json
@@ -62,6 +63,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+    def get_images
+      @category.images
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find_by_slug(params[:id])
