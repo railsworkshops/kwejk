@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  include ImagesHelper
   expose(:category) { Category.find_by_default(true) }
   expose(:image, attributes: :image_params)
   expose(:random_image) { Image.order('RANDOM()').first }
@@ -20,8 +21,7 @@ class ImagesController < ApplicationController
   end
 
   def add_to_top
-    if current_user.admin? || current_user.vip?
-      set_image
+    if can_add_to_top?
       image.update_attributes(category: Category.find_by_default(false))
       redirect_to top_path
     end
