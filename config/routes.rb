@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :images do
+  resources :images, only: [:new, :create, :add_to_top] do
     member do
       put '/add_to_top', action: :add_to_top
     end
