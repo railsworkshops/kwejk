@@ -12,10 +12,6 @@ class ImagesController < ApplicationController
   def show
   end
 
-  def random_image
-    @image = Image.order('RANDOM()').first
-  end
-
   # GET /images/new
   def new
     @image = Image.new
@@ -25,8 +21,11 @@ class ImagesController < ApplicationController
   def edit
   end
 
-  # POST /images
-  # POST /images.json
+
+  def random_image
+    @image = Image.order('RANDOM()').first
+  end
+
   def create
     @image = Image.new(image_params)
     @image.picture = params[:file]
