@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     member do
       get '/add_to_top', action: :add_to_top
     end
+    resources :votes do
+      get '/vote_up', action: :vote_up
+      get '/vote_down', action: :vote_down
+    end
   end
   resources :categories
   mount Upmin::Engine => '/admin'

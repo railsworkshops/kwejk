@@ -6,5 +6,7 @@ h1
     = image.title
   - if can_add_to_top?
     = link_to 'Add to top', add_to_top_image_path(image)
+  = link_to 'Vote +', image_vote_vote_up_path(image)
+  = link_to 'Vote -', image_vote_vote_down_path(image)
   img src="#{image.picture}"
   br
