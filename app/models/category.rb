@@ -5,8 +5,4 @@ class Category < ActiveRecord::Base
   def to_param
     slug
   end
-
-  def self.find_by_param(input)
-    find_by_slug(input)
-  end
 end

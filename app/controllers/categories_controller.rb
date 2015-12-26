@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  expose(:category) { set_category }
+  expose(:category, finder: :find_by_slug, finder_parameter: :slug, attributes: :category_params)
   expose(:categories)
   expose(:images) { category.images }
 
@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if category.update_attributes(category_params)
+    if category.save
       redirect_to categories_path, notice: 'Category was successfully updated.'
     else
       render :edit
@@ -26,15 +26,7 @@ class CategoriesController < ApplicationController
 
   private
 
-  def set_category
-    if params[:id].present?
-      Category.find_by(slug: params[:id])
-    else
-      Category.new(category_params)
-    end
-  end
-
   def category_params
-    params.require(:category).permit(:name, :slug, :default) if params[:category]
+    params.require(:category).permit(:name, :slug, :default)
   end
 end
