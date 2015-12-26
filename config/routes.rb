@@ -8,12 +8,12 @@ Rails.application.routes.draw do
       get '/vote_down', action: :vote_down
     end
   end
-  resources :categories
+  resources :categories, param: :slug
   mount Upmin::Engine => '/admin'
   devise_for :users
   resources :users
-  get '/top', to: 'categories#show', as: :top, id: :top
-  get '/oczekujace', to: 'categories#show', as: :oczekujace, id: :oczekujace
+  get '/top', to: 'categories#show', as: :top, slug: :top
+  get '/oczekujace', to: 'categories#show', as: :oczekujace, slug: :oczekujace
   get '/random_image', to: 'images#random_image', as: :random_image
   root to: 'categories#show', id: :top
 end
