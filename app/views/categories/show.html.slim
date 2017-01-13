@@ -1,0 +1,10 @@
+h1
+  = @category.name
+
+- @category.images.each do |image|
+  h2
+    = image.title
+  - if user_signed_in? && (current_user.admin? || current_user.vip?) && @category.slug != 'top'
+    = link_to 'Add to top', add_to_top_image_path(image), method: :put
+  img src="#{image.picture}"
+  br
