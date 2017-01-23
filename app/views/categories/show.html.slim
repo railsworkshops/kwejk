@@ -2,6 +2,10 @@ h1
   = category.name
 
 - category.images.each do |image|
+  = "Glosy: #{image.votes_sum}"
+  - if current_user.can_vote_for_image?(image)
+    = link_to "+1", image_votes_path(image, '1'), method: :post, class: 'btn btn-success'
+    = link_to "-1", image_votes_path(image, '-1'), method: :post, class: 'btn btn-danger'
   h2
     = image.title
   - if user_signed_in? && (current_user.admin? || current_user.vip?) && category.slug != 'top'

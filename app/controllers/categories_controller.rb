@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   before_action :get_images, only: :show
 
   expose(:categories) { Category.all }
-
   expose(
     :category,
     finder: :find_by_slug,

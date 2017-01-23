@@ -21,7 +21,6 @@ class ImagesController < ApplicationController
   def edit
   end
 
-
   def random_image
     @image = Image.order('RANDOM()').first
   end
